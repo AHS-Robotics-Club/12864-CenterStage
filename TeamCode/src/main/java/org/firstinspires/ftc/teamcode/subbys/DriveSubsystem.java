@@ -17,6 +17,6 @@ public class DriveSubsystem extends SubsystemBase {
     }
 
     public void drive(double strafeSpeed, double forwardSpeed, double turnSpeed){
-        mDrive.driveRobotCentric(strafeSpeed, forwardSpeed, -turnSpeed, true);
+        mDrive.driveRobotCentric(-strafeSpeed, -forwardSpeed, -turnSpeed, true);
     }
 }

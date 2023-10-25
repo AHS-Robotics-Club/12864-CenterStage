@@ -21,6 +21,7 @@ import org.firstinspires.ftc.teamcode.subbys.ShooterSubby;
 @TeleOp(name = "hanger")
 public class TestActuatorOpMode extends CommandOpMode {
 //    private Motor hang, arm;
+    private Motor hang, arm;
     private Motor fL, bL, fR, bR;
     private SimpleServo shooter;
 //    private SimpleServo left_claw;
@@ -31,14 +32,14 @@ public class TestActuatorOpMode extends CommandOpMode {
     private GamepadEx gpad;
     @Override
     public void initialize() {
-//        hang = new Motor(hardwareMap, "hang");
-//        arm = new Motor(hardwareMap, "arm");
+        hang = new Motor(hardwareMap, "hang");
+        arm = new Motor(hardwareMap, "arm");
         fL = new Motor(hardwareMap, "fL");
         fR = new Motor(hardwareMap, "fR");
         bL = new Motor(hardwareMap, "bL");
         bR = new Motor(hardwareMap, "bR");
 
-//        shooter = new SimpleServo(hardwareMap, "s", -180, 180);
+        shooter = new SimpleServo(hardwareMap, "s", -180, 180);
 //        left_claw = new SimpleServo(hardwareMap, "lc", -180, 180);
 //        right_claw = new SimpleServo(hardwareMap, "rc", -180, 180);
 
@@ -49,10 +50,10 @@ public class TestActuatorOpMode extends CommandOpMode {
         bR.motor.setDirection(DcMotor.Direction.FORWARD);
 
 //        arm.motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-//        hang.motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        hang.motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
 //        right_claw.setInverted(true);
-//        left_claw.setInverted(true);
+
         fL.motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         fR.motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         bL.motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -60,29 +61,29 @@ public class TestActuatorOpMode extends CommandOpMode {
 
         gpad = new GamepadEx(gamepad1);
 
-//        gpad.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenHeld(
-//                new InstantCommand(() -> hang.set(1))).whenReleased(new InstantCommand(() -> hang.set(0)));
-//
-//        gpad.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenHeld(
-//                new InstantCommand(() -> hang.set(-1))).whenReleased(new InstantCommand(() -> hang.set(0)));
-//
-//        gpad.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenHeld(
-//                new InstantCommand(() -> arm.set(0.4))).whenReleased(new InstantCommand(() -> arm.set(0)));
-//
-//        gpad.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whenHeld(
-//                new InstantCommand(() -> arm.set(-0.4))).whenReleased(new InstantCommand(() -> arm.set(0)));
+        gpad.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenHeld(
+                new InstantCommand(() -> hang.set(1))).whenReleased(new InstantCommand(() -> hang.set(0)));
 
-//        gpad.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whenPressed(
-//                new InstantCommand(() -> shooter.setPosition(-1)).andThen(new WaitCommand(350)).andThen(
-//                new InstantCommand(()  -> shooter.turnToAngle(0)))
-//        );
+        gpad.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenHeld(
+                new InstantCommand(() -> hang.set(-1))).whenReleased(new InstantCommand(() -> hang.set(0)));
+
+        gpad.getGamepadButton(GamepadKeys.Button.X).whenHeld(
+                new InstantCommand(() -> arm.set(0.4))).whenReleased(new InstantCommand(() -> arm.set(0)));
+
+        gpad.getGamepadButton(GamepadKeys.Button.B).whenHeld(
+                new InstantCommand(() -> arm.set(-0.4))).whenReleased(new InstantCommand(() -> arm.set(0)));
+
+        gpad.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(
+                new InstantCommand(() -> shooter.setPosition(-1)).andThen(new WaitCommand(350)).andThen(
+                new InstantCommand(()  -> shooter.turnToAngle(0)))
+        );
 //
-//        gpad.getGamepadButton(GamepadKeys.Button.X).toggleWhenPressed(
+//        gpad.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).toggleWhenPressed(
 //                new RunCommand(() -> left_claw.turnToAngle(-50)),
 //                new RunCommand(() -> left_claw.turnToAngle(45))
 //        );
-//
-//        gpad.getGamepadButton(GamepadKeys.Button.B).toggleWhenPressed(
+////
+//        gpad.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).toggleWhenPressed(
 //                new InstantCommand(() -> right_claw.setPosition(0.3)),
 //                new InstantCommand(() -> right_claw.setPosition(0.7))
 //        );
